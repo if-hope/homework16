@@ -47,4 +47,22 @@ public class BankApplication {
 
         desiredAccount.setBalance(desiredAccount.getBalance() - amount);
     }
+
+    public void processCheck (String accountId, int amount, String currency){
+
+        try {
+            process(accountId, amount, currency);
+        } catch (WrongAccountException wrongAccountException){
+            System.out.println("Account with such ID doesn't exist");
+        } catch (WrongCurrencyException wrongCurrencyException){
+            System.out.println("Account has another currency");
+        } catch (WrongOperationException wrongOperationException){
+            System.out.println("Account hasn't enough money");
+        } catch (Exception exception){
+            System.out.println("A processing error occurred, please try again");
+        } finally {
+            System.out.println("Thanks' for using our service");
+        }
+
+    }
 }
